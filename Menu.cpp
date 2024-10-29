@@ -4,41 +4,15 @@ using namespace std;
 // ansi codes to control the console - ancient stuff but still works...
 // some ansi codes here:https://tforgione.fr/posts/ansi-escape-codes/
 
-void drawMenu(vector<string>& m) {
-	for (const auto& i : m) {
-		cout << " " << i << "\n";
-	}
-}
+// declare some functions
+void drawMenu(vector<string>& m);
+void drawHelpMessage(string& s);
+void addKeyPressDelay();
+void cursorLineUp();
+void cursorLineDown();
+void cursorToMenuBottom(int n);
+void cursorToMenuTop(int n);
 
-void drawHelpMessage(string& s) {
-	if (s.size() <= 0) return;
-	cout << s;
-}
-
-void addKeyPressDelay() {
-	Sleep(100);
-	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
-}
-
-void cursorLineUp() {
-	cout << "\x1b[A";
-}
-
-void cursorLineDown() {
-	cout << "\x1b[B";
-}
-
-void cursorToMenuBottom(int n) {
-	string thecommand = "\x1b[";
-	thecommand.append(to_string(n)).append("B");
-	cout << thecommand;
-}
-
-void cursorToMenuTop(int n) {
-	string thecommand = "\x1b[";
-	thecommand.append(to_string(n)).append("A");
-	cout << thecommand;
-}
 
 pair<int, string> getKeyboardInput(vector<string>& menuChoices, string helpString) {
 	int menuSize = menuChoices.size();
@@ -83,3 +57,40 @@ pair<int, string> getKeyboardInput(vector<string>& menuChoices, string helpStrin
 	return make_pair(keyCounter, menuChoices[keyCounter]);
 
 }
+
+void drawMenu(vector<string>& m) {
+	for (const auto& i : m) {
+		cout << " " << i << "\n";
+	}
+}
+
+void drawHelpMessage(string& s) {
+	if (s.size() <= 0) return;
+	cout << s;
+}
+
+void addKeyPressDelay() {
+	Sleep(100);
+	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+}
+
+void cursorLineUp() {
+	cout << "\x1b[A";
+}
+
+void cursorLineDown() {
+	cout << "\x1b[B";
+}
+
+void cursorToMenuBottom(int n) {
+	string thecommand = "\x1b[";
+	thecommand.append(to_string(n)).append("B");
+	cout << thecommand;
+}
+
+void cursorToMenuTop(int n) {
+	string thecommand = "\x1b[";
+	thecommand.append(to_string(n)).append("A");
+	cout << thecommand;
+}
+
