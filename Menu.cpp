@@ -70,7 +70,8 @@ void drawHelpMessage(string& s) {
 }
 
 void addKeyPressDelay() {
-	Sleep(100);
+	// slow it down to kamke it more usable
+	Sleep(250);
 	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 }
 
